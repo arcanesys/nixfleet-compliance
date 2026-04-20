@@ -67,7 +67,10 @@ in {
 
   config = lib.mkIf cfg.enable {
     compliance.governance = {
-      enforceMode = p "enforce";
+      # mkDefault (not `p`) — enforceMode is a user policy knob, not a
+      # strictness-derived value. All frameworks set "enforce"; consumers
+      # override with a plain set (e.g. enforceMode = "report").
+      enforceMode = lib.mkDefault "enforce";
       level = p governanceLevel;
       architecture = lib.mkDefault pkgs.stdenv.hostPlatform.parsed.cpu.name;
     };

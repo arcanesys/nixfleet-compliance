@@ -79,7 +79,10 @@ in {
     p = mkPriority governanceLevel;
   in {
     compliance.governance = {
-      enforceMode = p "enforce";
+      # mkDefault (not `p`) — enforceMode is a user policy knob, not a
+      # strictness-derived value. All frameworks set "enforce"; consumers
+      # override with a plain set (e.g. enforceMode = "report").
+      enforceMode = lib.mkDefault "enforce";
       level = p governanceLevel;
       hostType = lib.mkDefault hostTypeFromCategory.${cfg.category};
       exceptions = lib.mkDefault (lib.mapAttrs (_: v: {inherit (v) rationale;}) cfg.exceptions);
