@@ -69,6 +69,23 @@
         fi
       fi
 
+      # Firmware-side cross-check. The SecureBoot efivar at the
+      # EFI_GLOBAL_VARIABLE GUID lays out as 4 attribute bytes
+      # (uint32 LE) then a single value byte (0x01 enabled, 0x00
+      # disabled). Reading the variable directly avoids depending
+      # on the wording of `bootctl status` and surfaces a
+      # divergence when the two sources disagree.
+      firmware_secure_boot_active="unknown"
+      sb_var="/sys/firmware/efi/efivars/SecureBoot-8be4df61-93ca-11d2-aa0d-00e098032b8c"
+      if [ "$efi_supported" = "true" ] && [ -r "$sb_var" ]; then
+        sb_byte=$(od -An -tu1 -j 4 -N 1 "$sb_var" 2>/dev/null | tr -d ' ' || true)
+        if [ "$sb_byte" = "1" ]; then
+          firmware_secure_boot_active="true"
+        elif [ "$sb_byte" = "0" ]; then
+          firmware_secure_boot_active="false"
+        fi
+      fi
+
       boot_loader="unknown"
       if command -v bootctl >/dev/null 2>&1; then
         boot_loader=$(bootctl status 2>/dev/null | head -1 || true)
@@ -99,12 +116,14 @@
         --argjson compliant "$compliant" \
         --argjson efi_supported "$efi_supported" \
         --argjson secure_boot_active "$secure_boot_active" \
+        --arg firmware_secure_boot_active "$firmware_secure_boot_active" \
         --arg boot_loader "$boot_loader" \
         --argjson signed_entries_exist "$signed_entries_exist" \
         '{
           compliant: $compliant,
           efi_supported: $efi_supported,
           secure_boot_active: $secure_boot_active,
+          firmware_secure_boot_active: $firmware_secure_boot_active,
           boot_loader: $boot_loader,
           signed_entries_exist: $signed_entries_exist
         }'
