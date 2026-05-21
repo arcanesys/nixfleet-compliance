@@ -2,6 +2,7 @@
 #
 # Baseline hardening rules implementing ANSSI R7-R14.
 # Each rule = one ANSSI rule = one group of related sysctls/kernel params.
+# Derived from cloud-gouv/securix:modules/anssi/{kernel-options,preboot}.nix (MIT). See NOTICES.
 [
   # ── R7: IOMMU ──────────────────────────────────────
   {

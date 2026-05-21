@@ -4,6 +4,7 @@
 # No enforcement: secure boot setup is via lanzaboote, handled by fleet.
 # Verifies: EFI support, secure boot status, boot loader detection,
 # signed unified kernel images.
+# Derived in part from cloud-gouv/securix:modules/anssi/preboot.nix (MIT). See NOTICES.
 #
 # Typed control: type="both". The static gate inspects whether a
 # secure-boot enabling layer (lanzaboote, sd-stub with shim) is

@@ -55,6 +55,10 @@ Contact: <contact@arcanesys.fr>
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Credits
+
+Some modules derive from [cloud-gouv/securix](https://github.com/cloud-gouv/securix) (MIT). See [NOTICES](NOTICES) for the file mapping.
+
 ## License
 
 MIT. See [LICENSE-MIT](LICENSE-MIT).

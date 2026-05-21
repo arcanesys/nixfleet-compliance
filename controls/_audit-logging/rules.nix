@@ -1,6 +1,7 @@
 # controls/_audit-logging/rules.nix
 #
 # Audit logging rules - journald persistence + auditd enforcement.
+# AL-02 derived from cloud-gouv/securix:modules/auditd.nix (MIT). See NOTICES.
 [
   # ── Journald persistence ───────────────────────────
   {

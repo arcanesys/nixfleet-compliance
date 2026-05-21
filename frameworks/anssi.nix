@@ -3,6 +3,7 @@
 # ANSSI Linux hardening guide v2.0 compliance framework.
 # Maps ANSSI compliance levels and system categories to
 # governance settings and enables hardening controls.
+# Derived in part from cloud-gouv/securix:modules/anssi/options.nix (MIT). See NOTICES.
 {
   config,
   lib,

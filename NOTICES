@@ -1,0 +1,12 @@
+nixfleet-compliance third-party notices
+=======================================
+
+Material derived from cloud-gouv/securix (https://github.com/cloud-gouv/securix), MIT. Redistributed under MIT (see LICENSE-MIT).
+
+| File | Upstream source |
+|---|---|
+| controls/_baseline-hardening/rules.nix | securix/modules/anssi/kernel-options.nix, preboot.nix (R7-R14) |
+| controls/_secure-boot.nix | securix/modules/anssi/preboot.nix (R3 efivar read) |
+| controls/_audit-logging/rules.nix (AL-02) | securix/modules/auditd.nix |
+| frameworks/anssi.nix | securix/modules/anssi/options.nix |
+| lib/mkControl.nix | securix/modules/anssi/generator.nix |

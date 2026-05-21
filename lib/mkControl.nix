@@ -1,6 +1,7 @@
 # lib/mkControl.nix
 #
 # mkControl: generates a NixOS module from a control definition with rules.
+# Architecture derived from cloud-gouv/securix:modules/anssi/generator.nix (MIT). See NOTICES.
 #
 # Usage:
 #   import ../lib/mkControl.nix {
